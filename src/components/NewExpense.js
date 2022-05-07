@@ -28,9 +28,9 @@ const NewExpense = ({ addExpense }) => {
     e.preventDefault();
 
     const newExpenseData = {
-      newTitle: title,
-      newDate: new Date(date),
-      newAmount: amount,
+      title: title,
+      date: new Date(date),
+      amount: amount,
     };
 
     addExpense(newExpenseData);
@@ -58,9 +58,6 @@ const NewExpense = ({ addExpense }) => {
           </div>
         </div>
       </form>
-      <h1>{title}</h1>
-      <h1>{date}</h1>
-      <h4>{amount}</h4>
     </div>
   );
 };

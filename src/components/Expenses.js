@@ -1,25 +1,41 @@
-import Card from "./Card";
 import ExpensesItem from "./ExpensesItem";
 import "./Expenses.css";
+import Card from "./Card";
+import ExpensesFilter from "./ExpensesFilter";
+import { useState } from "react";
 
 const Expenses = (props) => {
+  const [selectedYear, setSelectedYear] = useState(2022);
+
   console.log("props", props);
   console.log(props.data);
   const { allExpenses } = props;
 
   console.log("allExpenses", allExpenses);
 
+  const filteredExpenses = allExpenses.filter(
+    (expense) => expense.date.getFullYear() === Number(selectedYear)
+  );
+
+  console.log("filteredExpenses", filteredExpenses);
+
+  const filterByYear = (year) => {
+    setSelectedYear(year);
+    console.log("Получаем из Expenses year", year);
+  };
+
   return (
-    <div>
-      {allExpenses.map((expense) => (
+    <Card>
+      <ExpensesFilter onFilter={filterByYear} selectedYear={selectedYear} />
+      {filteredExpenses.map((expense) => (
         <ExpensesItem
           key={Math.random()}
-          date={expense.newDate}
-          title={expense.newTitle}
-          price={expense.newAmount}
+          date={expense.date}
+          title={expense.title}
+          price={expense.amount}
         />
       ))}
-    </div>
+    </Card>
   );
 };
 

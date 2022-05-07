@@ -10,8 +10,9 @@ const ExpensesItem = (props) => {
   //props - объект
   // props => {}
 
-  // переменная состояния
-  // функция
+  // useState() => [a, b]
+  // a - переменная состояния
+  // b - функция
 
   return (
     <Card className="expense-item">
