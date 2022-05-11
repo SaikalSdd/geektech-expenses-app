@@ -1,11 +1,9 @@
-import { useState } from "react";
-
 import ExpenseDate from "./ExpenseDate";
 import "./ExpensesItem.css";
 import Card from "./Card";
 
 const ExpensesItem = (props) => {
-  const { date, title, price } = props;
+  const { id, date, title, price, onRemoveExpense } = props;
 
   //props - объект
   // props => {}
@@ -14,6 +12,10 @@ const ExpensesItem = (props) => {
   // a - переменная состояния
   // b - функция
 
+  const removeExpenseHandler = (id) => {
+    onRemoveExpense(id);
+  };
+
   return (
     <Card className="expense-item">
       <ExpenseDate date={date} />
@@ -21,7 +23,7 @@ const ExpensesItem = (props) => {
         <h1>{title}</h1>
       </div>
       <div className="expense-item__price">${price}</div>
-      <button>Remove</button>
+      <button onClick={(e) => removeExpenseHandler(id)}>Remove</button>
     </Card>
   );
 };

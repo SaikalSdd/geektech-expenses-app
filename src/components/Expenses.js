@@ -7,21 +7,18 @@ import { useState } from "react";
 const Expenses = (props) => {
   const [selectedYear, setSelectedYear] = useState(2022);
 
-  console.log("props", props);
-  console.log(props.data);
-  const { allExpenses } = props;
-
-  console.log("allExpenses", allExpenses);
+  const { allExpenses, onRemove } = props;
 
   const filteredExpenses = allExpenses.filter(
     (expense) => expense.date.getFullYear() === Number(selectedYear)
   );
 
-  console.log("filteredExpenses", filteredExpenses);
-
   const filterByYear = (year) => {
     setSelectedYear(year);
-    console.log("Получаем из Expenses year", year);
+  };
+
+  const removeExpense = (id) => {
+    onRemove(id);
   };
 
   return (
@@ -30,9 +27,11 @@ const Expenses = (props) => {
       {filteredExpenses.map((expense) => (
         <ExpensesItem
           key={Math.random()}
+          id={expense.id}
           date={expense.date}
           title={expense.title}
           price={expense.amount}
+          onRemoveExpense={removeExpense}
         />
       ))}
     </Card>

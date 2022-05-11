@@ -6,8 +6,6 @@ const NewExpense = ({ addExpense }) => {
   const [date, setDate] = useState("Date");
   const [amount, setAmount] = useState(0);
 
-  console.log("date", date);
-
   //переменная состояния
   // функция обновления
 
@@ -21,13 +19,13 @@ const NewExpense = ({ addExpense }) => {
 
   const amountHandler = (sobytie) => {
     setAmount(sobytie.target.value);
-    console.log(sobytie.target.value);
   };
 
   const saveExpense = (e) => {
     e.preventDefault();
 
     const newExpenseData = {
+      id: Math.random(),
       title: title,
       date: new Date(date),
       amount: amount,
